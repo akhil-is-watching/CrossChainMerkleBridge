@@ -21,6 +21,10 @@ contract MerkleProofRegistry {
         _;
     }
 
+    constructor(address _proofCommiter) {
+        proofCommiter = _proofCommiter;
+    }
+
     function commitProof(uint256 _blockNumber, bytes32 _proof) public onlyCommiter{
         require(_blockNumber > latestProofBlock, "ERR: BLOCK PROOF ALREADY COMMITED");
         _merkleProof[_blockNumber] = _proof;
